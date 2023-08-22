@@ -36,12 +36,12 @@ Roman numerals are usually written largest to smallest from left to right. Howev
 
 Given a roman numeral, convert it to an integer.    
 
-**Example 1:**
+**Example 1:**<br>
     **Input**: s = "III"
     **Output**: 3
     **Explanation**: III = 3.
 
-**Example 2:**
+**Example 2:**<br>
     **Input**: s = "MCMXCIV"
     **Output**: 1994
     **Explanation**: M = 1000, CM = 900, XC = 90 and IV = 4.
