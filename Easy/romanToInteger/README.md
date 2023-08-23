@@ -37,11 +37,21 @@ Roman numerals are usually written largest to smallest from left to right. Howev
 Given a roman numeral, convert it to an integer.    
 
 **Example 1:**<br>
-    **Input**: s = "III"
-    **Output**: 3
+    **Input**: s = "III"<br>
+    **Output**: 3<br>
     **Explanation**: III = 3.
 
 **Example 2:**<br>
-    **Input**: s = "MCMXCIV"
-    **Output**: 1994
+    **Input**: s = "MCMXCIV"<br>
+    **Output**: 1994<br>
     **Explanation**: M = 1000, CM = 900, XC = 90 and IV = 4.
+
+# Solution
+## Approach
+
+The Simplest thing is within the example when we have<br>
+let's say <br>
+    `III` = `I` + `I` + `I` <br>
+    `IV`  = `I` + `V`<br>
+    
+
