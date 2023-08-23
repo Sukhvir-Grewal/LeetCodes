@@ -218,7 +218,7 @@ But still we need to calculate the actual value For that we again need to loop t
 As our code uses only two loops now the time complexity would decrease to **O(n<sup>2</sup>)** Which is still bad but better than last time let's see if we can make it with **O(n)** In version three
 
 
-# Version 3.0.0
+# Version 3.0.0(FINAL)
 
 I wasn't so sure, But I was able to combine all the logic in just one loop from making a combination to do a calculation for each combination and do the final calculation as well in this one loop<br>
 
@@ -254,3 +254,23 @@ Now the main loop Look something like this
 ## Efficiency
 
 This will result the runtime of the function With **O(n)** which is quite faster than what we have started with but I'm still curious if we are able to make it more faster, Need to do bit more research
+
+# Version 3.0.0(CHAT_GTP)
+
+I couldn't figure out another way to make my solution more faster or more smaller but after searching on Internet for the solution I found a solution which uses only eight lines of code to get to the solution with the same problem
+```python
+total = 0
+    prev_value = 0
+
+    # Loop through the string in reverse
+    for numeral in reversed(roman):
+        value = roman_values[numeral]
+        if value < prev_value:
+            total -= value
+        else:
+            total += value
+        prev_value = value
+    return total
+```
+
+Apparently, this is solution satisfy all three rules of a combination as well since we are doing the calculation from the end of the string instead of from the beginning where we have to keep track of the next value to check the combination but in this solution when we go from right to left we just need to keep track of the previous value to find the solution.
