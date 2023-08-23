@@ -166,4 +166,54 @@ for i in range(len(result)):
         result[i] = b - a
 ```
 ## Efficiency
-Alright this solution is a completely working now but as you can see we are using three *Three Loops* for three logics. I already knew the solution was not efficient but I just want to make The code work since it is like my 4th leetcode question the solution I have right now, will run with the time complexity of O(n<sup>3</sup>) Which is actually quite slow, now let's try to improve the Solution
+Alright this solution is a completely working now but as you can see we are using three *Three Loops* for three logics. I already knew the solution was not efficient but I just want to make The code work since it is like my 4th leetCode question the solution I have right now, will run with the time complexity of **O(n<sup>3</sup>)** Which is actually quite slow, now let's try to improve the Solution
+
+# Version 1.0.0
+
+The first big improvement we can do is just by joining two septate logics together in one loop, Currently we use:<br>
+* One loop for creating pairs
+* Second loop for Calculation of those pairs
+
+So every time we make a pair of two Values let's lay `IV` We pass the same array into another function so that the calculation can be done on only the value which is at the end of the array. And here's that function
+
+```python
+def Calculation(result, romanList):
+    a = romanList.get(result[len(result) - 1][0])
+    if len(result[len(result) - 1]) == 1:
+        result[len(result) - 1] = a
+        return result
+    b = romanList.get(result[len(result) - 1][1])
+    if a >= b:
+        result[len(result) - 1] = a + b
+    else:
+        result[len(result) - 1] = b - a
+    return result
+```
+
+Now we can use this function every time we create a pair right away we can do the calculation
+
+```python
+ result = [] 
+    j = 2
+    i = 0
+    while i <= (len(roman)-1):
+        if i < len(roman)-1 and ((roman[i] == "I" and roman[i+1] in ["V","X"]) or
+            (roman[i] == "X" and roman[i+1] in ["L","C"])  or
+            (roman[i] == "C" and roman[i+1] in ["D","M"])) :
+            result.append(roman[i:j])
+            Calculation(result, romanList)
+            i+=2
+            j+=2
+        else:
+            result.append(roman[i])
+            Calculation(result, romanList)
+            i+=1
+            j+=1
+```
+
+But still we need to calculate the actual value For that we again need to loop through the array with the same logic
+
+## Efficiency
+
+Hello as our code uses only two loops now the time complexity would decrease to **O(n<sup>2</sup>)** Which is still bad but better than last time let's see if we can make it with **O(n)** In version three
+
