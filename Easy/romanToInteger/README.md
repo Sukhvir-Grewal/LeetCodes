@@ -168,7 +168,7 @@ for i in range(len(result)):
 ## Efficiency
 Alright this solution is a completely working now but as you can see we are using three *Three Loops* for three logics. I already knew the solution was not efficient but I just want to make The code work since it is like my 4th leetCode question the solution I have right now, will run with the time complexity of **O(n<sup>3</sup>)** Which is actually quite slow, now let's try to improve the Solution
 
-# Version 1.0.0
+# Version 2.0.0
 
 The first big improvement we can do is just by joining two septate logics together in one loop, Currently we use:<br>
 * One loop for creating pairs
@@ -217,3 +217,40 @@ But still we need to calculate the actual value For that we again need to loop t
 
 As our code uses only two loops now the time complexity would decrease to **O(n<sup>2</sup>)** Which is still bad but better than last time let's see if we can make it with **O(n)** In version three
 
+
+# Version 3.0.0
+
+I wasn't so sure, But I was able to combine all the logic in just one loop from making a combination to do a calculation for each combination and do the final calculation as well in this one loop<br>
+
+As I am making the combination I am using another function to do the main calculation as well
+```python
+def CalculationOfTotal(total, lastVal):
+    if total >= lastVal:
+        total = total + lastVal
+    else:
+        total = lastVal - total
+    return total       
+```
+
+Now the main loop Look something like this
+```python
+ while i <= (len(roman)-1):
+        if i < len(roman)-1 and ((roman[i] == "I" and roman[i+1] in ["V","X"]) or
+            (roman[i] == "X" and roman[i+1] in ["L","C"])  or
+            (roman[i] == "C" and roman[i+1] in ["D","M"])) :
+            result.append(roman[i:j])
+            Calculation(result, romanList)
+            total = CalculationOfTotal(total, result[len(result) - 1])
+            i+=2
+            j+=2
+        else:
+            result.append(roman[i])
+            Calculation(result, romanList)
+            total = CalculationOfTotal(total, result[len(result) - 1])
+            i+=1
+            j+=1
+```
+
+## Efficiency
+
+This will result the runtime of the function With **O(n)** which is quite faster than what we have started with but I'm still curious if we are able to make it more faster, Need to do bit more research
