@@ -55,4 +55,6 @@ let's say <br>
 - `IV`  = `I` + `V`<br>
 
 The simplest solution i came up with was using an array<br>
-python```result = []```
+```python
+result = []
+```
