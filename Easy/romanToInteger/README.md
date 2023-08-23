@@ -51,7 +51,7 @@ Given a roman numeral, convert it to an integer.
 
 The Simplest thing is within the example when we have<br>
 let's say <br>
-    `III` = `I` + `I` + `I` <br>
-    `IV`  = `I` + `V`<br>
-    
+    - `III` = `I` + `I` + `I` <br>
+    - `IV`  = `I` + `V`<br>
+
 
