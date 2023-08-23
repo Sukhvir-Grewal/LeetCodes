@@ -54,4 +54,5 @@ let's say <br>
 - `III` = `I` + `I` + `I` <br>
 - `IV`  = `I` + `V`<br>
 
-
+The simplest solution i came up with was using an array<br>
+python```result = []```
