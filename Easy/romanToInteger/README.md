@@ -165,3 +165,5 @@ for i in range(len(result)):
     else:
         result[i] = b - a
 ```
+## Efficiency
+Alright this solution is a completely working now but as you can see we are using three *Three Loops* for three logics. I already knew the solution was not efficient but I just want to make The code work since it is like my 4th leetcode question the solution I have right now, will run with the time complexity of O(n<sup>3</sup>) Which is actually quite slow, now let's try to improve the Solution
