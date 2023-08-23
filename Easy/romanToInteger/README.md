@@ -215,5 +215,5 @@ But still we need to calculate the actual value For that we again need to loop t
 
 ## Efficiency
 
-Hello as our code uses only two loops now the time complexity would decrease to **O(n<sup>2</sup>)** Which is still bad but better than last time let's see if we can make it with **O(n)** In version three
+As our code uses only two loops now the time complexity would decrease to **O(n<sup>2</sup>)** Which is still bad but better than last time let's see if we can make it with **O(n)** In version three
 
