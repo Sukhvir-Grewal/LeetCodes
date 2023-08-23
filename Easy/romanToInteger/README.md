@@ -30,6 +30,8 @@ For example, 2 is written as `II` in Roman numeral, just two ones added together
 
 Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not `IIII`. Instead, the number four is written as `IV`. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as `IX`. There are six instances where subtraction is used:
 
+### Combination rules
+
 * `I` can be placed before `V` (5) and `X` (10) to make 4 and 9. 
 * `X` can be placed before `L` (50) and `C` (100) to make 40 and 90. 
 * `C` can be placed before `D` (500) and `M` (1000) to make 400 and 900.
@@ -53,8 +55,113 @@ The Simplest thing is within the example when we have<br>
 let's say <br>
 - `III` = `I` + `I` + `I` <br>
 - `IV`  = `I` + `V`<br>
+- `CMIV`  = `CM` + `IV`
 
 The simplest solution i came up with was using an array<br>
 ```python
 result = []
+```
+Break the coming string of **Roman numbers** down into pairs of two and put it in the array
+
+```python
+roman = "IXIV"
+
+result = ["IX","IV"]
+```
+which I achieved using this logic
+```python
+j = 0
+i = 0
+while i <= (len(roman)-1):
+    i+=2
+    result.append(roman[j:i])
+    j+=2
+```
+
+Then we can work with pairs of two or one to do the calculation:<br>
+* if first value is big and second is small, we add them
+* if first value is small and second is big, we Subtract them
+
+visually it will look like this
+```python
+result = ["IX","IV"]
+# IX = I(1)X(X) = 10 - 1 = 9
+# IV = I(1)V(5) = 5 - 1  = 4
+# After Calculation our updated array will look like
+result = [9,4]
+```
+The simple solution is a bit complicated for this one it took me a while to figure out how will I convert and put values as well
+```python
+for i in range(len(result)):
+    a = romanList.get(result[i][0])
+    ```
+    If the length is one it means we are at the end 
+    of the array where we have only one pair of one 
+    letter like "I" here: result = ["IX","IV", "I"]
+    ```
+    if len(result[i]) == 1
+        result[i] = a
+        break
+    b = romanList.get(result[i][1])
+    if a >= b:
+        result[i] = a + b
+    else:
+        result[i] = b - a
+```
+Then we just need to do the rest of the calculation to get to the answerthe logic will be same if a is bigger than or equal to b we add otherwise we subtract<br>
+In our case:
+```python
+total = 0
+result = [9,4]
+total = 9 + 4
+total = 13
+```
+And it could be done by
+```python
+for i in range(len(result)):
+    if total >= result[i]:
+        total = total + result[i]
+    else:
+        total = result[i] - total
+return total
+```
+## Mistakes
+At this point I thought I have the answer but with this logic if we are trying to convert this roman number `MCMXCIV`, I thought it would result in `MC` + `MX` + `CI` + `V` <br><br>
+Which was wrong because I didn't read the question properly<br>
+It was supposed to look like this: `M` + `CM` + `XC` + `IV` <br><br>
+
+This happened because of I didn't follow the rule of [Combination rules](#combination-rules)
+
+Alright can apply these rules in our combining statement in Wile loop
+```python
+j = 2
+i = 0
+while i <= (len(roman)-1):
+    if i < len(roman)-1 and ((roman[i] == "I" and roman[i+1] in ["V","X"]) or
+        (roman[i] == "X" and roman[i+1] in ["L","C"])  or
+        (roman[i] == "C" and roman[i+1] in ["D","M"])) :
+        result.append(roman[i:j])
+        i+=2
+        j+=2
+    else:
+        result.append(roman[i])
+        i+=1
+        j+=1        
+```
+
+since now we can have a pair of one in the middle or in the front of our array Instead of at the end, we have to change the logic forward calculation as well
+```python
+for i in range(len(result)):
+    a = romanList.get(result[i][0])
+    if len(result[i]) == 1 and i == len(result) - 1:
+        result[i] = a
+        break
+    elif len(result[i]) == 1:
+        result[i] = a
+        continue
+    b = romanList.get(result[i][1])
+    if a >= b:
+        result[i] = a + b
+    else:
+        result[i] = b - a
 ```
